@@ -1,12 +1,11 @@
 package org.vehicle.service.model;
 
-import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "vehicle_service")
+@Document(collection = "vehicleService")
 @Data
 @Builder
 @AllArgsConstructor
@@ -14,8 +13,6 @@ import java.time.LocalDate;
 @ToString
 public class VehicleServiceModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDate date;
@@ -29,7 +26,6 @@ public class VehicleServiceModel {
     private String model;
     private Integer year;
     private String technician;
-    @Lob
     private String jobDescription;
 
     // Getters and setters

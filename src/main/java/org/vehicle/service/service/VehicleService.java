@@ -7,12 +7,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.vehicle.service.model.VehicleServiceModel;
 import org.vehicle.service.repository.VehicleServiceRepository;
-import org.vehicle.service.specifications.VehicleServiceSpecification;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -60,13 +58,7 @@ public class VehicleService {
 
     public List<VehicleServiceModel> searchRecords(VehicleServiceModel record) {
         logger.debug("Searching records with criteria: {}", record);
-        Specification<VehicleServiceModel> spec = Specification.where(VehicleServiceSpecification.hasCustomerName(record.getCustomerName()))
-                .and(VehicleServiceSpecification.hasPlateNumber(record.getPlateNumber()))
-                .and(VehicleServiceSpecification.hasTechnician(record.getTechnician()))
-                .and(VehicleServiceSpecification.hasDate(record.getDate()))
-                .and(VehicleServiceSpecification.hasChassisNo(record.getChassisNo()));
-
-        return repository.findAll(spec);
+        return repository.findByCustomerNameContaining(record.getCustomerName());
     }
 
     public String uploadFile(MultipartFile file) {

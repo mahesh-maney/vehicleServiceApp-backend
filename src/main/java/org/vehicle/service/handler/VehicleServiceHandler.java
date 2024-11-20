@@ -3,11 +3,13 @@ package org.vehicle.service.handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.vehicle.service.model.VehicleServiceModel;
 import org.vehicle.service.service.VehicleService;
 import java.util.List;
 
+@Component
 public class VehicleServiceHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(VehicleServiceHandler.class);
