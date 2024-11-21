@@ -4,4 +4,9 @@ spring:
       uri: mongodb://localhost:27017/nayeem
   server:
     port: 8282
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+    api-docs:
+      path: /v3/api-docs
 
